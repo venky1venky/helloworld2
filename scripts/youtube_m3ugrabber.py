@@ -7,18 +7,18 @@ if 'win' in sys.platform:
     windows = True
 
 def grab(url):
-    response = s.get(url, timeout=15).text
+    response = requests.get(url, timeout=15).text
     if '.m3u8' not in response:
-        response = requests.get(url).text
+        #response = requests.get(url).text
         if '.m3u8' not in response:
             if windows:
-                print('https://raw.githubusercontent.com/naveenland4/UTLive/main/assets/info.m3u8')
+                print('https://raw.githubusercontent.com/benmoose39/YouTube_to_m3u/main/assets/moose_na.m3u')
                 return
             #os.system(f'wget {url} -O temp.txt')
             os.system(f'curl "{url}" > temp.txt')
             response = ''.join(open('temp.txt').readlines())
             if '.m3u8' not in response:
-                print('https://raw.githubusercontent.com/naveenland4/UTLive/main/assets/info.m3u8')
+                print('https://raw.githubusercontent.com/benmoose39/YouTube_to_m3u/main/assets/moose_na.m3u')
                 return
     end = response.find('.m3u8') + 5
     tuner = 100
@@ -32,9 +32,9 @@ def grab(url):
             tuner += 5
     print(f"{link[start : end]}")
 
-print('#EXTM3U x-tvg-url="https://iptv-org.github.io/epg/guides/in/dishtv.in.epg.xml"')
+print('#EXTM3U x-tvg-url="https://github.com/botallen/epg/releases/download/latest/epg.xml"')
 print(banner)
-s = requests.Session()
+#s = requests.Session()
 with open('../youtube_channel_info.txt') as f:
     for line in f:
         line = line.strip()
