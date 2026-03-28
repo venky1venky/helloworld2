@@ -5,6 +5,9 @@ from pydantic import BaseModel, Field
 class ModerationResult(BaseModel):
 
     rationale: str = Field(description="Explanation of what was harmful and why")
+    contains_pii: bool = Field(default=False, description="Whether the content contains any personally-identifiable information (PII)")
+    is_unfriendly: bool = Field(default=False, description="Whether unfriendly tone or content was detected")
+    is_unprofessional: bool = Field(default=False, description="Whether unprofessional tone or content was detected")
 
 
 class TextModerationResult(ModerationResult):

@@ -160,7 +160,8 @@ class ChatSessionWithTracing:
                         response = "[This content was flagged by moderation and not sent to the AI. Please try again.]"
 
                         # TODO: set an attribute "feedback" in the tracing span
-                        span.set_attribute("feedback", feedback)
+                        with tracer.start_as_current_span("feedback") as feedback_span:
+                            feedback_span.set_attribute("feedback", feedback)
 
                         return response, past_messages, feedback
 

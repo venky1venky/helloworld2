@@ -92,7 +92,7 @@ cases: List[Case[List[ImageInput], ImageModerationResult, Any]] = [
             LLMJudge(
                 model=judge_model,
                 rubric="The rationale should describe specific quality issues (blurry, pixelated, poor exposure, etc.)",
-                include_input=...,  # TODO: in this case it is probably useful to include the input image for contextue
+                include_input=True,  # TODO: in this case it is probably useful to include the input image for contextue
             ),
         ),
     ),
